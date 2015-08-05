@@ -1,7 +1,10 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
 	<p>
-		<%= f.label :commenter %><br>
-		<%= f.text_field :commenter %>
+		<% if current_user %>
+			Commenting as: <%= current_user.email %>
+		<% else %>
+			Only <%= link_to 'logged in', log_in_path %> users can add comments
+		<% end %>
 	</p>
 	<p>
 		<%= f.label :body %><br>

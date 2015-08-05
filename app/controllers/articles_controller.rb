@@ -9,7 +9,11 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
-		@article = Article.new
+		if current_user
+			@article = Article.new
+		else
+			redirect_to log_in_path, :notice => "You must be logged in to create an article"
+		end	
 	end
 
 	def edit
@@ -18,7 +22,6 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-
 		if @article.save
 			redirect_to @article
 		else
