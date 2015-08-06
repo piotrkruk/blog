@@ -17,33 +17,48 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
-		@article = Article.find(params[:id])
+		if current_user && current_user == @article.user_id
+			@article = Article.find(params[:id])
+		else
+			redirect_to articles_path, :notice => "You cannot edit this article"
+		end
 	end
 
 	def create
-		@article = Article.new(article_params)
-		if @article.save
-			redirect_to @article
+		if current_user
+			@article = Article.new(article_params)
+			@article.user_id = current_user.id
+			if @article.save
+				redirect_to @article
+			else
+				render 'new'
+			end
 		else
-			render 'new'
+			redirect_to log_in_path, :notice => "You must be logged in"
 		end
 	end
 
 	def update
 		@article = Article.find(params[:id])
-
-		if @article.update(article_params)
-			redirect_to @article
+		if current_user && current_user.id == @article.user_id
+			if @article.update(article_params)
+				redirect_to @article
+			else
+				render 'edit'
+			end
 		else
-			render 'edit'
+			redirect_to @article
 		end
 	end
 
 	def destroy
 		@article = Article.find(params[:id])
-		@article.destroy
-
-		redirect_to articles_path
+		if current_user && current_user.id == @article.user_id
+			@article.destroy
+			redirect_to articles_path
+		else
+			redirect_to articles_path, :notice => "You cannot remove this article"
+		end
 	end
 
 	private

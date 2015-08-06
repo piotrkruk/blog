@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 		if current_user
 			@article = Article.find(params[:article_id])
 			@comment = @article.comments.new(comment_params)
-			@comment.commenter = current_user.email
+			@comment.user_id = current_user.id
 			if @comment.save
 				redirect_to article_path(@article)
 			else
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 	def destroy
 		@article = Article.find(params[:article_id])
 		@comment = @article.comments.find(params[:id])
-		if current_user != nil && current_user.email == @comment.commenter
+		if current_user != nil && current_user.id == @comment.user_id
 			@comment.destroy
 			redirect_to article_path(@article), :notice => "Successfully deleted the comment"
 		else
