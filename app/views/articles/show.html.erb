@@ -6,6 +6,11 @@
 	<strong>Text:</strong>
 	<%= @article.text %>
 </p>
+<p>
+	<i>
+	Author: <%= User.find(@article.user_id).email %>
+	</i>
+</p>
 
 <h2>Comments</h2>
 <%= render @article.comments %>
