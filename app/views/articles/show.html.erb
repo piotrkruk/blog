@@ -8,7 +8,8 @@
 </p>
 <p>
 	<i>
-	Author: <%= User.find(@article.user_id).email %>
+	Author: 
+	<%= link_to @article.user.email, @article.user %>
 	</i>
 </p>
 

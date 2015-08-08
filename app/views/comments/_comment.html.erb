@@ -1,6 +1,6 @@
 <p>
 	<strong>Commenter:</strong>
-	<%= User.find(comment.user_id).email %> <br>
+	<%= link_to comment.user.email, comment.user %> <br>
 </p>
 <p>
 	<strong>Comment:</strong>
