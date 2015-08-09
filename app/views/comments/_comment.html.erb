@@ -1,13 +1,11 @@
-<p>
-	<strong>Commenter:</strong>
-	<%= link_to comment.user.email, comment.user %> <br>
-</p>
-<p>
-	<strong>Comment:</strong>
+<div>
 	<%= comment.body %>
-</p>
-<p>
-	<%= link_to 'Destroy Comment', [comment.article, comment],
-		method: :delete,
-		data: { confirm: 'Are you sure?' } %>
-</p>
+	<strong>by</strong>
+	<i><%= link_to comment.user.email, comment.user %></i>
+	<br />
+	<% if current_user && comment.user_id == current_user.id %>
+		<%= link_to 'Destroy Comment', [comment.article, comment],
+			method: :delete,
+			data: { confirm: 'Are you sure?' } %>
+	<% end %>
+</div>
