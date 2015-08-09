@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
 
   	def authorize
   		if current_user == nil
-  			redirect_to log_in_path(r:params), :notice => "You must log in to access this content"
+  			redirect_url = nil
+  			redirect_url = request.fullpath if request.get?
+  			redirect_to log_in_path(redirect: redirect_url),
+  				:notice => "You must log in to access this content"
   		end
   	end
 end

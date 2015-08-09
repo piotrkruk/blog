@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
-		if current_user != @article.user_id
+		if current_user.id != @article.user_id
 			redirect_to articles_path, notice: "You cannot edit this article"
 		end
 	end
