@@ -1,4 +1,5 @@
 <div>
+	<%= image_tag avatar_url(comment.user)+'?s=50' %>
 	<%= comment.body %>
 	<strong>by</strong>
 	<i><%= link_to comment.user.email, comment.user %></i>

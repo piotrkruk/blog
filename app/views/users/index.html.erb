@@ -7,7 +7,7 @@
 
 	<% @users.each do |user| %>
 		<tr>
-			<td>todo</td>
+			<td><%= image_tag avatar_url(user)+'?s=50' %></td>
 			<td><%= user.email %></td>
 			<td><%= link_to 'Show', user %></td>
 		</tr>

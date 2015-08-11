@@ -8,7 +8,10 @@
 </p>
 <p>
 	<i>
-	Author: 
+	Author:
+	<br/>
+	<%= image_tag avatar_url(@article.user)+'?s=100' %>
+	<br/>
 	<%= link_to @article.user.email, @article.user %>
 	</i>
 </p>
