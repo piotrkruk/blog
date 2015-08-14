@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20150812122855) do
   end
 
   create_table "articles_tags", id: false, force: :cascade do |t|
-    t.integer  "article_id"
-    t.integer  "tag_id"
+    t.integer  "article_id", null: false
+    t.integer  "tag_id",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150812122855) do
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

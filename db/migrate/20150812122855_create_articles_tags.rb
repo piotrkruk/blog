@@ -1,8 +1,8 @@
 class CreateArticlesTags < ActiveRecord::Migration
   def change
     create_table :articles_tags, id: false do |t|
-      t.belongs_to :article
-      t.belongs_to :tag
+      t.belongs_to :article, null: false
+      t.belongs_to :tag, null: false
 
       t.timestamps null: false
     end
