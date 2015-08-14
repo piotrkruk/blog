@@ -15,6 +15,10 @@
 	<%= link_to @article.user.email, @article.user %>
 	</i>
 </p>
+<p>
+	Tags:
+	<%= @article.tags.map { |t| t.name }.join(', ') %>
+</p>
 
 <%= render 'comments/comments', comments: @article.comments.includes(:user) %>
 

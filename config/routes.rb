@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+  
+  resources :tags, only: [:index]
 
   root 'welcome#index'
-
 end

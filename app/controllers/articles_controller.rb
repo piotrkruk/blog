@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params)
 		@article.user_id = current_user.id
 		if @article.save
+			TagArticle.call(article: @article, tags: params[:tags])
 			redirect_to @article
 		else
 			render 'new'
@@ -32,6 +33,7 @@ class ArticlesController < ApplicationController
 	def update
 		if current_user.id == @article.user_id
 			if @article.update(article_params)
+				TagArticle.call(article: @article, tags: params[:tags])
 				redirect_to @article
 			else
 				render 'edit'

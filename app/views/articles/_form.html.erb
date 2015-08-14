@@ -23,8 +23,24 @@
     <%= f.label :text %><br>
     <%= f.text_area :text %>
   </p>
+
+  <p>
+    <%= label_tag :tags %><br>
+    <% tags = @article.tags.map { |t| t.name }.join(',') %>
+    <%= text_field_tag :tags, tags, id: 'article_tags' %>
+  </p>
  
   <p>
     <%= f.submit %>
   </p>
+
+  <script type="text/javascript"> 
+    $("#article_tags").tagit({
+      autocomplete: {
+        delay: 0,
+        minLength: 2,
+        source: "/tags.json"
+      }
+    });
+  </script>
 <% end %>
