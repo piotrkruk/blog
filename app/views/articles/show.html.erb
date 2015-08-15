@@ -17,7 +17,7 @@
 </p>
 <p>
 	Tags:
-	<%= @article.tags.map { |t| t.name }.join(', ') %>
+	<%= raw @article.tags.map { |t| link_to t.name, tag_path(t) }.join(', ') %>
 </p>
 
 <%= render 'comments/comments', comments: @article.comments.includes(:user) %>

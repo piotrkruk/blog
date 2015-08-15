@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :comments
   end
   
+  get 'tags/:tag', to: 'articles#index', as: :tag
+
   resources :tags, only: [:index]
 
   root 'welcome#index'
