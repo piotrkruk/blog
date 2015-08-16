@@ -6,13 +6,6 @@ class Article < ActiveRecord::Base
 	validates :title, presence: true, length: {minimum: 5}
 
   def self.get_by_tag(tag)
-    articles = Array.new
-    tag = Tag.find(tag)
-    articles = Article.all.find_all {
-      |a| a.tags.include?(tag)
-    }
-    return articles
+    Article.joins(:articles_tags).where(articles_tags: { tag_id: tag })
   end
-
-
 end
