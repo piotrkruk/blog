@@ -1,5 +1,14 @@
 <h1>Listing articles</h1>
 
+<div id="tag_cloud">
+	<b> Popular tags </b>
+	<br>
+	<% tag_cloud.each do |tag| %>
+		<%= link_to tag.name, tag_path(tag) %> 
+	<% end %>
+</div>
+<br>
+
 <%= link_to 'New article', new_article_path %>
 <table>
 	<tr>
