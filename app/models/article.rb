@@ -8,9 +8,4 @@ class Article < ActiveRecord::Base
   def self.get_by_tag(tag)
     Article.joins(:articles_tags).where(articles_tags: { tag_id: tag })
   end
-
-  def self.tag_counts
-    Tag.select("tags.*, count(articles_tags.tag_id) as count").
-    joins(:articles_tags).group("articles_tags.tag_id")
-  end
 end
