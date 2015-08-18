@@ -1,15 +1,18 @@
 <h1>Listing users</h1>
-<table>
-	<tr>
+<table class="table">
+	<tr class="info">
 		<th>Avatar</th>
 		<th>Email</th>
+		<th></th>
 	</tr>
 
 	<% @users.each do |user| %>
 		<tr>
 			<td><%= image_tag avatar_url(user)+'?s=50' %></td>
 			<td><%= user.email %></td>
-			<td><%= link_to 'Show', user %></td>
+			<td><%= link_to user, class: 'btn btn-primary' do %>
+					<i class="glyphicon glyphicon-user"></i> Show
+			<% end %> </td>
 		</tr>
 	<% end %>
 </table><br>
