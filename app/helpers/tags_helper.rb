@@ -5,6 +5,6 @@ module TagsHelper
   end
 
   def tag_cloud
-    tag_counts.limit(60).sort_by(&:count).reverse
+    tag_counts.order('count DESC').limit(60)
   end
 end
