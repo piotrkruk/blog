@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'composite_primary_keys', '>= 8.1.1'
 
 gem 'interactor', '>= 3.1.0'
+
+gem 'rspec'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
