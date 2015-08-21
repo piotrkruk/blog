@@ -6,7 +6,8 @@
 box: ruby
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
-# services:
+services:
+    - wercker/postgresql
     # - postgres
     # http://devcenter.wercker.com/docs/services/postgresql.html
 
@@ -16,12 +17,6 @@ box: ruby
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
-deploy:
-  steps:
-    - heroku-deploy:
-        key: $HEROKU_KEY
-        user: $HEROKU_USER
-        app-name: $HEROKU_APP_NAME
 
 build:
     # Steps make up the actions in your pipeline
@@ -29,6 +24,31 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
     steps:
         - bundle-install
+        
+        - rails-database-yml:
+            service: postgresql
+        
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running!"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+
+        - script:
+            name: Set up db
+            code: bundle exec rake db:schema:load RAILS_ENV=test
+        
         - script:
             name: rspec
             code: bundle exec rspec
+
+deploy:
+  steps:
+    - heroku-deploy:
+        key: $HEROKU_KEY
+        user: $HEROKU_USER
+        app-name: $HEROKU_APP_NAME
+    - script:
+        name: Update database
+        code: heroku run rake db:migrate --app $TARGET_NAME
