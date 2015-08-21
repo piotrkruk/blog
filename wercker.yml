@@ -3,11 +3,11 @@
 # https://registry.hub.docker.com/_/ruby/
 # If you want to use a specific version you would use a tag:
 # ruby:2.2.2
-box: wercker/ubuntu12.04-ruby2.0.0
+box: ruby
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
 services:
-    - wercker/postgresql
+    - postgres
     # http://devcenter.wercker.com/docs/services/postgresql.html
 
     # - mongodb
