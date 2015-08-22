@@ -28,6 +28,13 @@ build:
             service: postgresql
         
         - script:
+            name: get nodejs
+            code: |
+                curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
+                nvm install 0.12.7
+                nvm use 0.12.7
+        
+        - script:
             name: echo ruby information
             code: |
                 echo "ruby version $(ruby --version) running!"
