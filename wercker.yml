@@ -23,17 +23,16 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
     steps:
         - bundle-install
-        
+
         - rails-database-yml:
             service: postgresql
-        
+
         - script:
             name: get nodejs
             code: |
                 curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
-                nvm install 0.12.7
-                nvm use 0.12.7
-        
+                bash < echo "nvm install 0.12.7 ; nvm use 0.12.7"
+
         - script:
             name: echo ruby information
             code: |
@@ -46,7 +45,7 @@ build:
         - script:
             name: Set up db
             code: bundle exec rake db:schema:load RAILS_ENV=test
-        
+
         - script:
             name: rspec
             code: bundle exec rspec
