@@ -1,30 +1,26 @@
-# README
-
-[![wercker status](https://app.wercker.com/status/c2f59ed2ec45294c9df51f8ea56e189f/s/master "wercker status")](https://app.wercker.com/project/bykey/c2f59ed2ec45294c9df51f8ea56e189f)
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Blog [![wercker status](https://app.wercker.com/status/c2f59ed2ec45294c9df51f8ea56e189f/s/master "wercker status")](https://app.wercker.com/project/bykey/c2f59ed2ec45294c9df51f8ea56e189f)
+This is a simple blog. It allows users to create their own accounts, post articles, comment on them and tag articles to enhance searching.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Deployment
+The project is using wercker for autodeployment.
+It's still under development however you can already see production running at:
+
+http://evening-everglades-6181.herokuapp.com
+
+
+## Features
+
+### Users
+Written from scratch sing up and log in using [BCrypt](https://github.com/codahale/bcrypt-ruby) for generating password hash and password salt. Sessions tokens are stored in cookies.
+
+### Articles
+Basic blog functionality including browsing, creating, editing and deleting articles.
+
+### Tags
+Articles can be tagged with existing tags or new ones can be added. There is also an autocomplete feature for finding desired tag. Front end built with [TagIt](https://github.com/hailwood/jQuery-Tagit).
+The most popular tags are listed in the tag cloud.
+The articles can be searched by the given tag.
+
+### Comments 
+Each article can be commented by users.
